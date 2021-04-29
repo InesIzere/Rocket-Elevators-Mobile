@@ -58,11 +58,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    borderBottomWidth: '1',
+    borderBottomWidth: 1,
     borderBottomColor: '#eeeeee'
   },
   instructions: {
-    ontSize: 18,
+    fontSize: 18,
     margin: 10,
     textAlign: 'center',
     color: 'rgb(34, 65, 115)',
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 5,
     textAlign: "center",
-    borderBottomWidth: '1',
+    borderBottomWidth: 1,
     borderBottomColor: 'rgb(24, 36, 56)'
   },
   elevatorIdText: {
