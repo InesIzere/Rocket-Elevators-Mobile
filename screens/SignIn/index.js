@@ -44,7 +44,7 @@ const StartupScreen= ({ navigation }) => {
       
       <View>
         <Text style = {styles.example}>Please Enter Your Email address</Text>
-        <TextInput style={styles.loginButton}  value={email.value}  onChangeText={(text) => setEmail({ value: text})}  required />
+        <TextInput   value={email.value}  onChangeText={(text) => setEmail({ value: text})}  required />
         <TouchableOpacity>
           <Button style = {styles.button}
           icon="login" mode="contained" onPress={logInAuthentification} > Log in </Button>
@@ -57,10 +57,10 @@ const StartupScreen= ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
       flex: 1,
-     
+      width:"100%",
     alignItems: 'center',
     justifyContent: 'center',
-      borderBottomWidth: '1',
+      borderBottomWidth: 1,
       borderBottomColor: '#eee'
   },
   exemple:{
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
 
     width: 300,
     alignItems: "center",
-    height: 50,
+    width: 50,
     backgroundColor: "#EF0909",
 
   },
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 
     width:"100%",
     alignItems: "center",
-    height: 50,
+    width:"50%",
     backgroundColor: "#0000FF",
 
   },
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
       margin: 10,
       textAlign: 'center',
       color: 'rgb(34, 65, 115)',
-      borderBottomWidth: '1',
+      borderBottomWidth: 1,
       borderBottomColor: '#eee'
   },
 

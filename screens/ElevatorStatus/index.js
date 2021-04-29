@@ -78,14 +78,14 @@ function updateStatus() {
 
         <Button backgroundColor= "blue"  color="black"
                 icon="logout" mode="outlined" onPress={() => props.navigation.navigate("Elevator List")}>
-                Go Back To the List
+                Go Back To Elevators List
         </Button>  
 
           {showBtn? (
           <View>
               <Button backgroundColor= "blue"  color="black"
                 icon="logout" mode="outlined" onPress={() => props.navigation.navigate("Sign In")}>
-                Go Back To Home Page
+                Go Back To Log In
               </Button>  
            </View>) : (<View/>)}
           
