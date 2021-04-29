@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default LandingScreen;","map":{"version":3,"sources":["C:/Users/izere/RE/screens/Landing/index.js"],"names":["LandingScreen"],"mappings":"AAEA,eAAeA,aAAf","sourcesContent":["\r\n \r\nexport default LandingScreen;"]},"metadata":{},"sourceType":"module"}
