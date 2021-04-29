@@ -9,6 +9,7 @@ const ElevatorScreen=(props)=> {
 
         const [isLoading, setLoading] = useState(true);
         const [data, setData] = useState([]);
+        var isLogged = props.route.params;
 
       useEffect(()=>{
           fetch('https://rocketmobile2000.herokuapp.com/api/elevators/notActive')
@@ -22,8 +23,8 @@ const ElevatorScreen=(props)=> {
     return (
 
 <View>
-  <Button icon="logout" color="black" 
-    mode="contained" onPress={() => props.navigation.navigate('Sign In')}>
+  <Button icon="logout" color="black" backgroundColor= "#ecf0f1"
+    mode="contained" onPress={() => props.navigation.navigate('Sign In', {isLogged: false})}>
     Log Out!
   </Button>
   <TouchableOpacity>   
@@ -37,7 +38,8 @@ const ElevatorScreen=(props)=> {
         // onPress event comes with an event object
         props.navigation.navigate('Elevator Status', {
           id: item.id ,
-          status: item.status
+          status: item.status,
+          isLogged: false
         });
       }}>
         Id:{item.id}
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    borderBottomWidth: 1,
+    
     borderBottomColor: '#eeeeee'
   },
   instructions: {
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 5,
     textAlign: "center",
-    borderBottomWidth: 1,
+    
     borderBottomColor: 'rgb(24, 36, 56)'
   },
   elevatorIdText: {

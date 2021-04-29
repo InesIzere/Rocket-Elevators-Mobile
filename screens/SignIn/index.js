@@ -7,6 +7,7 @@ import React,{useState} from 'react';
 import { ImageBackground, StyleSheet, Text, Image, View, SafeAreaView, TouchableOpacity} from 'react-native';
 const StartupScreen= ({ navigation }) => {
   const [email, setEmail] = useState({ value: ''})
+  var isLogged = useState(false);
 
   function logInAuthentification()  {
     let employee_email = email.value;
@@ -22,7 +23,7 @@ const StartupScreen= ({ navigation }) => {
               console.log ('works');
               navigation.reset({
                                 index: 0,
-                                routes: [{ name: "Elevator List" }],
+                                routes: [{ name: "Elevator List", isLogged: true }],
                             })
             }
             else{
@@ -37,15 +38,15 @@ const StartupScreen= ({ navigation }) => {
     <ImageBackground  style={styles.background} source={require('../assets/2.jpeg')}>
       <View style={styles.logoContainer}>
       <Image style={styles.logo} source={require('../assets/R2.png')} />
-      <Text height = {70} > Welcome to Rocket Elevators</Text>
+      <Text style={styles.exemple}> Welcome to Rocket Elevators</Text>
        
       </View>
       
       <View>
-        <Text style = {styles.instructions1}>Please to start login using your email</Text>
+        <Text style = {styles.example}>Please Enter Your Email address</Text>
         <TextInput style={styles.loginButton}  value={email.value}  onChangeText={(text) => setEmail({ value: text})}  required />
         <TouchableOpacity>
-          <Button style = {styles.registerButton}
+          <Button style = {styles.button}
           icon="login" mode="contained" onPress={logInAuthentification} > Log in </Button>
         </TouchableOpacity>
       </View>
@@ -53,14 +54,24 @@ const StartupScreen= ({ navigation }) => {
   );
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
       flex: 1,
-      flex: 1,
+     
     alignItems: 'center',
     justifyContent: 'center',
       borderBottomWidth: '1',
       borderBottomColor: '#eee'
+  },
+  exemple:{
+    color:'#fff', 
+    fontSize:50, 
+    textAlign:'center'
+  },
+  example:{
+    color:'white', 
+    fontSize:20, 
+    textAlign:'center'
   },
   logoContainer: {
     
@@ -74,7 +85,8 @@ const styles = {
   },
   loginButton: {
 
-    width:"100%",
+    width: 300,
+    alignItems: "center",
     height: 50,
     backgroundColor: "#EF0909",
 
@@ -82,6 +94,7 @@ const styles = {
   registerButton: {
 
     width:"100%",
+    alignItems: "center",
     height: 50,
     backgroundColor: "#0000FF",
 
@@ -121,7 +134,7 @@ const styles = {
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12
-  },
+},
   button: {
     backgroundColor: "blue",
     padding: 10,
@@ -137,8 +150,9 @@ const styles = {
       borderRadius: 5
   },
   textinput: {
-    fontSize:50, height: 70,
+    fontSize:50, 
+    height: 70,
     margin: 15
   }
-}
+});
 export default StartupScreen;

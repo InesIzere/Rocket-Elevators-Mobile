@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "RE",
+    "name": "Rocket Elevators Mobile",
     "slug": "RE",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Rocket Elevators Mobile"
   }
 }
