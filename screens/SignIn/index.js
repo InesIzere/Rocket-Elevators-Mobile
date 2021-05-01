@@ -1,20 +1,21 @@
-import { TextInput, Button} from 'react-native-paper';
-import Logo from '../assets/R2.png';
+import { TextInput, Button, } from 'react-native-paper';
+import logo from '../assets/R2.png';
 import axios from 'axios';
-import metal from '../assets/2.jpeg';
-
+import image from '../assets/2.jpeg';
 import React,{useState} from 'react';
-import { ImageBackground, StyleSheet, Text, Image, View, SafeAreaView, TouchableOpacity} from 'react-native';
+import { ImageBackground, StyleSheet, Text, Image, View, SafeAreaView, TouchableOpacity, Dimensions} from 'react-native';
 const StartupScreen= ({ navigation }) => {
-  const [email, setEmail] = useState({ value: ''})
+  const [email, setEmail] = useState({ value: ''});
+  const windowHeight = Dimensions.get('window').height;
   var isLogged = useState(false);
 
   function logInAuthentification()  {
     let employee_email = email.value;
     if(employee_email == "") return alert("Email is Required !!");
     console.log (employee_email);
-    //Call API
+    //Call API // function for getting list of elevators
     return axios.get(`https://rocketmobile2000.herokuapp.com/api/employees/${employee_email}`)
+     // handle response
         .then(function (response) {
           console.log ('API inside');
           console.log (response.data);
@@ -27,132 +28,80 @@ const StartupScreen= ({ navigation }) => {
                             })
             }
             else{
-              console.log("${employee_email} is incorrect");
-              alert("Sorry!\n${employee_email} is not the email of a listed agent");
+              console.log("Email is incorrect");
+              alert("Sorry! the entered email  is not a valid listed agent");
             }
         })
       }
  
 
   return (
-    <ImageBackground  style={styles.background} source={require('../assets/2.jpeg')}>
-      <View style={styles.logoContainer}>
-      <Image style={styles.logo} source={require('../assets/R2.png')} />
-      <Text style={styles.exemple}> Welcome to Rocket Elevators</Text>
-       
-      </View>
+    <View style={styles.container}>
+      <ImageBackground source={image} style={styles.image}>
+        <View  >  
+          <Image  source={logo} style={styles.logo} resizeMode="contain"  />
+          <Text style={styles.exemple}> Welcome to Rocket Elevators</Text>
+        </View>
       
-      <View>
-        <Text style = {styles.example}>Please Enter Your Email address</Text>
-        <TextInput   value={email.value}  onChangeText={(text) => setEmail({ value: text})}  required />
-        <TouchableOpacity>
-          <Button style = {styles.button}
-          icon="login" mode="contained" onPress={logInAuthentification} > Log in </Button>
-        </TouchableOpacity>
-      </View>
-    </ImageBackground>
+         
+         <View  >
+          <Text style = {styles.example}>Please Enter Your Email address</Text>
+          <TextInput style={{alignItems:"center"}}  style={{color: "white",height: 40, borderColor: 'blue', width: Dimensions.get("window").width, margin:10 }}
+            value={email.value}  onChangeText={(text) => setEmail({ value: text})}  required />
+            <TouchableOpacity>
+              <Button  style = {{margin:10, backgroundColor: "blue", height: 40,}} 
+              icon="login" mode="contained" onPress={logInAuthentification} > Log in </Button>
+          </TouchableOpacity>
+        </View>
+          
+      </ImageBackground>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      width:"100%",
-    alignItems: 'center',
-    justifyContent: 'center',
-      borderBottomWidth: 1,
-      borderBottomColor: '#eee'
-  },
+    
   exemple:{
     color:'#fff', 
-    fontSize:50, 
-    textAlign:'center'
+    fontSize:40, 
+    textAlign:'center',
+   
   },
   example:{
     color:'white', 
     fontSize:20, 
     textAlign:'center'
-  },
-  logoContainer: {
-    
-    position: "absolute",
-    top : 30,
-    alignItems: "center",
-    fontSize:50, 
-    height: 70,
-    fontWeight: "bold",
-    margin: 15
-  },
-  loginButton: {
-
-    width: 300,
-    alignItems: "center",
-    width: 50,
-    backgroundColor: "#EF0909",
-
-  },
-  registerButton: {
-
-    width:"100%",
-    alignItems: "center",
-    width:"50%",
-    backgroundColor: "#0000FF",
-
-  },
-  background: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
   
+  },
+ 
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      flexDirection: 'column'
     },
-  title: {
-      fontSize: 18,
-      margin: 10,
-      textAlign: 'center',
-      color: 'rgb(34, 65, 115)',
-},
-   logo: {
-  width: 305,
-  height: 159,
-  resizeMode: "contain",
-  marginBottom: 30,
-  marginTop: 0,
-},
-  elevatorList: {
-      fontSize: 15,
-      margin: 10,
-      textAlign: 'center',
-      color: 'rgb(34, 65, 115)',
-      borderBottomWidth: 1,
-      borderBottomColor: '#eee'
-  },
+    logo: {
 
-  button: {
-    marginTop: 20,
-    elevation: 8,
-    backgroundColor: "#335e82",
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 12
-},
-  button: {
-    backgroundColor: "blue",
-    padding: 10,
-    borderRadius: 5,
-  },
-  buttonText: {
-      fontSize: 15,
-      color: "#fff",
-      fontWeight: "bold",
-      alignSelf: "center",
-      textTransform: "uppercase",
-      padding: 10,
-      borderRadius: 5
-  },
-  textinput: {
-    fontSize:50, 
-    height: 70,
-    margin: 15
-  }
-});
+      width: 400,
+      height: 159,
+      marginBottom: 10,
+      
+    },
+    
+    button: {
+      backgroundColor: "blue",
+      padding: 20,
+      borderRadius: 5,
+    },
+   
+   
+    image: {
+      flex: 1,
+      resizeMode: "cover",
+      justifyContent: "space-between",
+      flexDirection: 'column'
+
+    }
+    });
 export default StartupScreen;

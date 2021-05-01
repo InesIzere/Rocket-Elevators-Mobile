@@ -1,4 +1,6 @@
 import 'react-native-gesture-handler';
+import logo from '../assets/R2.png';
+import image from '../assets/2.jpeg';
 import React,{useState,useEffect} from 'react';
 import { ActivityIndicator,ImageBackground,Image, StyleSheet, Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import {  Appbar, Button} from 'react-native-paper';
@@ -16,9 +18,13 @@ const ElevatorStatusScreen=(props)=> {
 // function for status Check
      useEffect(()=>{
       fetch(`https://rocketmobile2000.herokuapp.com/api/elevators/${id}`)
+      // handle response
         .then((response) => response.json())
+         // handle success
         .then((json) => setData(json))
+         // handle error
         .catch((error) => console.error(error))
+        // always executes at the last of any API call
         .finally(() => setLoading(false));                      
     }, [data]);
 
@@ -29,7 +35,7 @@ const ElevatorStatusScreen=(props)=> {
       }, []);
 
 
-
+//Fetch methods will return a Promise that makes it straightforward to write code that works in an asynchronous manner:
 function updateStatus() {
     fetch(`https://rocketmobile2000.herokuapp.com/api/elevators/${id}`, {
         method: 'POST',
@@ -54,7 +60,8 @@ function updateStatus() {
    //console.log(data)
   return (
   <View >
-
+   <Image  source={logo} style={styles.logo} resizeMode="contain"  /> 
+      {/*Running GET Request*/}
     <TouchableOpacity>
 
      {isLoading ? <ActivityIndicator/> : (
@@ -69,7 +76,7 @@ function updateStatus() {
 
         )}
 
-
+        
         <Button   color="black"
           icon="camera" mode="outlined" onPress={() => updateStatus()}>
           
@@ -90,7 +97,7 @@ function updateStatus() {
            </View>) : (<View/>)}
           
        </TouchableOpacity>
-   
+       
      </View>
     );
 }
@@ -107,7 +114,14 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
       fontSize: 20,
     },
-   
+    logo: {
+
+      width: 400,
+      height: 159,
+      marginBottom: 10,
+      justifyContent: "center"
+      
+    },
    
     elevatorId: {
       backgroundColor: "red",
@@ -187,7 +201,9 @@ const styles = StyleSheet.create({
       image: {
         flex: 1,
         resizeMode: "cover",
-        justifyContent: "center"
+        justifyContent: "space-between",
+        flexDirection: 'column'
+  
       }
       });
  

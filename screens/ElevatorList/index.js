@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler';
+
 import React,{useState,useEffect} from 'react';
 import { ActivityIndicator,FlatList,Image, StyleSheet, Text, View, TouchableOpacity, ImageBackground, ScrollView} from 'react-native';
 import {  FAB, Appbar, Button} from 'react-native-paper';
@@ -13,16 +14,22 @@ const ElevatorScreen=(props)=> {
 
       useEffect(()=>{
           fetch('https://rocketmobile2000.herokuapp.com/api/elevators/notActive')
+          // handle response
             .then((response) => response.json())
+            // handle success
             .then((json) => setData(json))
+            // handle error
             .catch((error) => console.error(error))
+            
+        // always executes at the last of any API call
             .finally(() => setLoading(false));
         }, []);
 
-
+//returning the value
     return (
 
 <View>
+
   <Button icon="logout" color="black" backgroundColor= "#ecf0f1"
     mode="contained" onPress={() => props.navigation.navigate('Sign In', {isLogged: false})}>
     Log Out!
@@ -49,7 +56,7 @@ const ElevatorScreen=(props)=> {
     )}/>
   )}
   </TouchableOpacity>
-
+ 
 </View>
     )
 }
@@ -62,6 +69,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     
     borderBottomColor: '#eeeeee'
+  },
+  logo: {
+
+    width: 400,
+    height: 159,
+    marginBottom: 10,
+    justifyContent: "center"
+    
+  },
+
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
   },
   instructions: {
     fontSize: 18,
